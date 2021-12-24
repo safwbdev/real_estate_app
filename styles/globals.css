@@ -14,3 +14,18 @@ a {
 * {
   box-sizing: border-box;
 }
+.image-gallery-slides {
+  border-radius: 8px;
+}
+@media only screen and (max-width: 600px) {
+  .image-gallery-slides {
+    border-radius: 0;
+  }
+  .css-1x4547l {
+    margin-top: 0 !important;
+  }
+}
+.image-gallery-left-nav .image-gallery-svg,
+.image-gallery-right-nav .image-gallery-svg {
+  width: 40px !important;
+}

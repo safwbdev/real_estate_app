@@ -4,17 +4,12 @@ import { FaBed, FaBath } from "react-icons/fa";
 import { GoVerified } from "react-icons/go";
 import { MdChair } from "react-icons/md";
 import { baseUrl, fetchApi } from "../../utils/fetchApi";
-import {
-  Box,
-  Flex,
-  Avatar,
-  Text,
-  Heading,
-  Stack,
-  Divider,
-} from "@chakra-ui/react";
+import { Box, Flex, Avatar, Text, Stack, Divider } from "@chakra-ui/react";
 import { BsGridFill } from "react-icons/bs";
-import ImageScrollbar from "../../components/ImageScrollbar";
+import { MdLocationCity } from "react-icons/md";
+import Gallery from "../../components/Gallery";
+import { FacebookIcon, TwitterIcon, WhatsappIcon } from "react-share";
+import PropertySection from "../../components/PropertySection";
 
 const PropertyDetails = ({
   propertyDetails: {
@@ -34,28 +29,46 @@ const PropertyDetails = ({
     photos,
     location,
   },
+  recommendations,
 }) => {
-  console.log(location);
+  //   console.log(recommendations);
+  const shareUrl = "http://localhost:3000/";
+
   return (
     <Box maxWidth={"1280px"} m={"auto"} marginTop={"20px"}>
+      <Box>
+        <Text
+          fontSize={{ base: "xl", md: "x-large" }}
+          marginBottom={{ base: "0", md: "2" }}
+          fontWeight={"bold"}
+          p={{ base: 4, md: 0 }}
+        >
+          {title}
+        </Text>
+      </Box>
       <Stack direction={["column", "row"]}>
         <Box w={{ base: "100%", md: "75%" }}>
-          <Box paddingLeft={"35px"}>
-            <Text fontSize={"xl"} marginBottom={"2"} fontWeight={"bold"}>
-              {title}
-            </Text>
-          </Box>
-          {photos && <ImageScrollbar data={photos} />}
+          {photos && <Gallery data={photos} />}
         </Box>
         <Box
           w={{ base: "100%", md: "25%" }}
           backgroundColor={"blue.100"}
+          borderRadius={{ base: 0, md: 8 }}
           p={"10px"}
         >
+          <Flex alignItems={"center"} marginBottom={4}>
+            <Box marginRight={"10px"}>
+              <Avatar size={"sm"} src={agency?.logo?.url} />
+            </Box>
+            <Box>
+              <Text fontSize={"md"} textColor={"black"}>
+                {agency?.name}
+              </Text>
+            </Box>
+          </Flex>
           <Flex
-            // paddingTop={"2"}
             alignItems={"center"}
-            justifyContent={"space-between"}
+            justifyContent={{ base: "center", md: "space-between" }}
           >
             <Flex alignItems={"center"}>
               {isVerified && (
@@ -64,27 +77,50 @@ const PropertyDetails = ({
                   color={"green.400"}
                   display={{ base: "block", md: "none" }}
                 >
-                  {/* {isVerified && <GoVerified />} */}
+                  <GoVerified />
                 </Box>
               )}
-              <Text fontWeight={"bold"} fontSize={"xl"}>
+              <Text fontWeight={"bold"} fontSize={"xl"} textColor={"black"}>
                 AED {millify(price)}
                 {rentFrequency && `/${rentFrequency}`}
               </Text>
             </Flex>
           </Flex>
-          <Flex>
-            <Text fontSize={"lg"} textTransform={"capitalize"}>
+          <Flex justifyContent={{ base: "center", md: "flex-start" }}>
+            <Text
+              fontSize={"lg"}
+              textTransform={"capitalize"}
+              textColor={"black"}
+            >
               {type} {purpose.replace("-", " ")}
             </Text>
           </Flex>
+
+          <Flex paddingTop={3} paddingBottom={3}>
+            <Divider />
+          </Flex>
+          {location[2] && (
+            <Flex
+              alignItems={"center"}
+              justifyContent={{ base: "center", md: "flex-start" }}
+            >
+              <Flex textColor={"black"}>
+                <MdLocationCity />
+              </Flex>
+              <Text paddingLeft={"10px"} textColor={"black"}>
+                {location[2]?.name}
+              </Text>
+            </Flex>
+          )}
+
+          <Flex paddingTop={3} paddingBottom={3}>
+            <Divider />
+          </Flex>
           <Flex
             direction={{ base: "unset", md: "column" }}
-            // alignItems={"center"}
             p={"1"}
-            // justifyContent={"space-between"}
-            // w={"250px"}
             color={"blue.400"}
+            justifyContent={{ base: "center", md: "flex-start" }}
           >
             <Flex
               alignItems={"center"}
@@ -106,30 +142,35 @@ const PropertyDetails = ({
               </Flex>
               <Flex marginLeft={"10px"}>{millify(area)} square feet</Flex>
             </Flex>
-            <Flex
-              alignItems={"center"}
-              display={{ base: "none", md: "flex" }}
-              mb={1}
-            >
-              <Flex>
-                <FaBed />
+
+            {rooms !== 0 && (
+              <Flex
+                alignItems={"center"}
+                display={{ base: "none", md: "flex" }}
+                mb={1}
+              >
+                <Flex>
+                  <FaBed />
+                </Flex>
+                <Flex marginLeft={"10px"}>
+                  {rooms} {rooms >= 1 ? "Bedrooms" : "Bedroom"}
+                </Flex>
               </Flex>
-              <Flex marginLeft={"10px"}>
-                {rooms} {rooms > 1 ? "Bedrooms" : "Bedroom"}
+            )}
+            {baths !== 0 && (
+              <Flex
+                alignItems={"center"}
+                display={{ base: "none", md: "flex" }}
+                mb={1}
+              >
+                <Flex>
+                  <FaBath />
+                </Flex>
+                <Flex marginLeft={"10px"}>
+                  {baths} {baths >= 1 ? "Bathrooms" : "Bathroom"}
+                </Flex>
               </Flex>
-            </Flex>
-            <Flex
-              alignItems={"center"}
-              display={{ base: "none", md: "flex" }}
-              mb={1}
-            >
-              <Flex>
-                <FaBath />
-              </Flex>
-              <Flex marginLeft={"10px"}>
-                {baths} {baths > 1 ? "Bathrooms" : "Bathroom"}
-              </Flex>
-            </Flex>
+            )}
             <Flex
               alignItems={"center"}
               display={{ base: "none", md: "flex" }}
@@ -149,153 +190,63 @@ const PropertyDetails = ({
               justifyContent={"space-between"}
             >
               <BsGridFill /> {millify(area)} sqft | <FaBed /> {rooms} |{" "}
-              <FaBath />{" "}
+              <FaBath /> {baths}
             </Flex>
           </Flex>
-          {/* <Flex>
-            <Box>
-              <Text mb={1} textTransform={"capitalize"}>
-                {type} {purpose.replace("-", " ")}
-              </Text>
-            </Box>
-          </Flex> */}
+
           <Flex paddingTop={2} paddingBottom={3}>
             <Divider />
           </Flex>
-          <Flex alignItems={"center"}>
-            {/* <Text>Agent Info</Text> */}
-            <Box marginRight={"10px"}>
-              <Avatar size={"sm"} src={agency?.logo?.url} />
-            </Box>
-            <Box>
-              <Text fontSize={"sm"}>{agency?.name}</Text>
-            </Box>
+          <Flex
+            paddingBottom={3}
+            justifyContent={{ base: "center", md: "center" }}
+          >
+            <Text fontSize={"sm"} fontWeight={"bold"} textColor={"black"}>
+              Share
+            </Text>
           </Flex>
-          {/* <Box marginTop={"2"}>
-            <Text fontSize={"lg"} marginBottom={"2"} fontWeight={"bold"}>
-              {title}
-            </Text>
-            <Text lineHeight={"2"} color={"grey.600"}>
-              {description}
-            </Text>
-          </Box> */}
+          <Flex paddingBottom={3} justifyContent={"space-around"}>
+            <TwitterIcon size={32} url={shareUrl} round />
+            <FacebookIcon size={32} url={shareUrl} round />
+
+            <WhatsappIcon size={32} url={shareUrl} round />
+          </Flex>
         </Box>
       </Stack>
-      <Box
-        // maxWidth="1000px"
-        margin="auto"
-        p="4"
-      >
-        {/* {photos && <ImageScrollbar data={photos} />} */}
-        <Box w="full" p="2">
-          {/* <Flex
-            paddingTop={"2"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-          >
-            <Flex alignItems={"center"}>
-              <Box paddingRight={"3"} color={"green.400"}>
-                {isVerified && <GoVerified />}
-              </Box>
-              <Text fontWeight={"bold"} fontSize={"lg"}>
-                AED {millify(price)}
-                {rentFrequency && `/${rentFrequency}`}
-              </Text>
-            </Flex>
-            <Box>
-              <Avatar size={"sm"} src={agency?.logo?.url} />
-            </Box>
-          </Flex> */}
-          {/* <Flex
-            alignItems={"center"}
-            p={"1"}
-            justifyContent={"space-between"}
-            w={"250px"}
-            color={"blue.400"}
-          >
-            {rooms} <FaBed /> | {baths} <FaBath /> | {millify(area)} sqft{" "}
-            <BsGridFill />
-          </Flex> */}
-          <Box marginTop={"2"}>
-            {/* <Text fontSize={"lg"} marginBottom={"2"} fontWeight={"bold"}>
-              {title}
-            </Text> */}
+      <Box margin="auto" p={{ base: 4, md: 0 }}>
+        <Box w="full">
+          <Box marginTop={"2"} marginBottom={8}>
             <Text lineHeight={"2"} color={"grey.600"}>
               {description}
             </Text>
           </Box>
-          {/* <Flex
-            flexWrap={"wrap"}
-            textTransform={"uppercase"}
-            justifyContent={"space-around"}
-            p={"10"}
-          >
-            <Flex
-              justifyContent={"center"}
-              alignItems={"center"}
-              direction={"column"}
-              // w={"400px"}
-              borderBottom={"1px"}
-              borderColor={"gray.100"}
-              p={"3"}
-            >
-              <Text fontSize="xl" mb={1}>
-                Type :
-              </Text>
-              <Heading>{type}</Heading>
-            </Flex>
-            <Flex
-              justifyContent={"center"}
-              alignItems={"center"}
-              // w={"400px"}
 
-              direction={"column"}
-              borderBottom={"1px"}
-              borderColor={"gray.100"}
-              p={"3"}
-            >
-              <Text fontSize="xl" mb={1}>
-                Purpose :
-              </Text>
-              <Heading>{purpose.replace("-", " ")}</Heading>
-            </Flex>
-            {furnishingStatus && (
-              <Flex
-                justifyContent={"center"}
-                //   w={"400px"}
-
-                direction={"column"}
-                borderBottom={"1px"}
-                alignItems={"center"}
-                borderColor={"gray.100"}
-                p={"3"}
-              >
-                <Text fontSize="xl" mb={1}>
-                  Furnishing Status :
-                </Text>
-                <Heading>{furnishingStatus}</Heading>
-              </Flex>
-            )}
-          </Flex> */}
-          {/* Facilites */}
-          <Box>
+          <Box marginBottom={50}>
             {amenities.length && (
-              <Text fontSize="2xl" fontWeight="black" marginTop="5">
-                Facilites:
+              <Text
+                fontSize="xl"
+                fontWeight="black"
+                marginBottom="2"
+                textAlign={{ base: "center", md: "left" }}
+              >
+                Aminities:
               </Text>
             )}
-            <Flex flexWrap={"wrap"}>
+            <Flex
+              flexWrap={"wrap"}
+              justifyContent={{ base: "center", md: "flex-start" }}
+            >
               {amenities?.map((item) =>
                 item?.amenities?.map((aminity) => (
                   <Text
                     key={aminity.text}
                     fontWeight={"bold"}
                     color={"blue.400"}
-                    fontSize={"l"}
+                    fontSize={"sm"}
                     p={"2"}
                     bg={"gray.200"}
                     m={"1"}
-                    borderRadius={"15"}
+                    borderRadius={8}
                   >
                     {aminity.text}
                   </Text>
@@ -303,7 +254,20 @@ const PropertyDetails = ({
               )}
             </Flex>
           </Box>
-          {/* Facilites End */}
+          <Box marginBottom={50}>
+            {recommendations?.hits.length && (
+              <Text
+                fontSize="xl"
+                fontWeight="black"
+                marginBottom="2"
+                textAlign={{ base: "center", md: "left" }}
+              >
+                Properties You might like
+              </Text>
+            )}
+
+            <PropertySection propertyData={recommendations?.hits} />
+          </Box>
         </Box>
       </Box>
     </Box>
@@ -314,10 +278,14 @@ export default PropertyDetails;
 
 export async function getServerSideProps({ params: { id } }) {
   const data = await fetchApi(`${baseUrl}/properties/detail?externalID=${id}`);
+  const recommendation = await fetchApi(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&hitsPerPage=3`
+  );
 
   return {
     props: {
       propertyDetails: data,
+      recommendations: recommendation,
     },
   };
 }

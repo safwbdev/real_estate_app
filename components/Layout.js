@@ -1,12 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
+import { NAV_TITLE } from "../utils/lang";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
 
 const Layout = ({ children }) => (
   <>
-    <Head>Real Estate</Head>
+    <Head>
+      <title>{NAV_TITLE}</title>
+    </Head>
     <header>
       <Navbar2 />
     </header>
