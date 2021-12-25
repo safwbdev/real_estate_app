@@ -30,7 +30,7 @@ const Banner = ({
       direction={{ base: "column-reverse", md: isflip }}
       wrap="no-wrap"
       minH="50vh"
-      px={8}
+      p={8}
       mb={16}
       height={disableHeight ? "unset" : { base: "95vh", md: "unset" }}
       {...rest}

@@ -21,7 +21,9 @@
     "react-horizontal-scrolling-menu": "^2.7.0",
     "react-icons": "^4.3.1",
     "react-image-gallery": "^1.2.7",
-    "react-share": "^4.4.0"
+    "react-share": "^4.4.0",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "eslint": "8.4.1",

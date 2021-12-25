@@ -29,3 +29,14 @@ a {
 .image-gallery-right-nav .image-gallery-svg {
   width: 40px !important;
 }
+
+.propertySection {
+}
+
+@media only screen and (min-width: 767px) {
+  .propertySection {
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 1px solid red; */
+  }
+}

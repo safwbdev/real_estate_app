@@ -56,8 +56,8 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
           title={"Properties for Sale"}
           url={"/search?purpose=for-sale"}
         />
-        <PropertySection propertyData={propertiesForRent} />
       </Box>
+      <PropertySection propertyData={propertiesForRent} />
       <Box
         // backgroundColor={"red.500"}
         backgroundImage={image2}
@@ -106,8 +106,8 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
           title={"Properties for Rent"}
           url={"/search?purpose=for-rent"}
         />
-        <PropertySection propertyData={propertiesForSale} />
       </Box>
+      <PropertySection propertyData={propertiesForSale} />
     </>
   );
 };

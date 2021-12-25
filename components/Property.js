@@ -30,22 +30,13 @@ const Property = ({
   <Link href={`/property/${externalID}`} passHref>
     <Flex
       flexWrap={"wrap"}
-      //   w="25%"
       w={isSearch ? searchSize : normalSize}
-      //   w="420px"
       p="5"
       paddingTop={"0"}
       justifyContent={"flex-start"}
       cursor={"pointer"}
     >
       <Box>
-        {/* <Image
-          src={coverPhoto ? coverPhoto.url : defaultImage}
-          width={400}
-          height={250}
-          rounded="1rem"
-          alt="house"
-        /> */}
         <Image
           src={coverPhoto ? coverPhoto.url : defaultImage}
           size="100%"
