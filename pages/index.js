@@ -1,9 +1,8 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import Banner from "../components/Banner";
+import Banner3 from "../components/Banner3";
 import DividerBox from "../components/DividerBox";
-import LandingLayout from "../components/Landing";
-
 import PropertySection from "../components/PropertySection";
 import { baseUrl, fetchApi } from "../utils/fetchApi";
 import {
@@ -15,29 +14,23 @@ import {
   HERO_SUBTITLE_B,
   HERO_TEXT_B,
   HERO_TITLE_B,
+  HERO_TITLE_C,
+  HERO_TEXT_C,
+  HERO_BUTTONTEXT_C,
 } from "../utils/lang";
+import { BANNER_1, BANNER_2, BANNER_3 } from "../utils/imageSource";
 
 const Home = ({ propertiesForSale, propertiesForRent }) => {
-  const image1 =
-    "https://images.pexels.com/photos/6077368/pexels-photo-6077368.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-  const image2 =
-    "https://images.pexels.com/photos/325193/pexels-photo-325193.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-  const image3 =
-    "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   return (
     <>
-      {/* <LandingLayout /> */}
-      {/* <Box> */}
       <Box
         backgroundColor={{ base: "none", md: "blue.100" }}
         backgroundImage={{
-          base: image1,
+          base: BANNER_1,
           md: "none",
         }}
         backgroundRepeat={"no-repeat"}
-        // backgroundPosition={"right"}
         backgroundSize={"cover"}
-        // backgroundAttachment={"fixed"}
       >
         <Box maxWidth={"1280px"} m={"auto"}>
           <Banner
@@ -46,7 +39,7 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
             desc={HERO_TEXT_A}
             buttonText={HERO_BUTTONTEXT_A}
             linkName="/search?purpose=for-sale"
-            imageUrl={image1}
+            imageUrl={BANNER_1}
             disableColor
           />
         </Box>
@@ -59,16 +52,14 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
       </Box>
       <PropertySection propertyData={propertiesForRent} />
       <Box
-        // backgroundColor={"red.500"}
-        backgroundImage={image2}
+        backgroundImage={BANNER_2}
         backgroundRepeat={"no-repeat"}
         backgroundSize={"cover"}
         backgroundAttachment={"fixed"}
       >
         <Flex
           maxWidth={"1280px"}
-          height={{ base: "80vh", md: "30vh" }}
-          // height={"30vh"}
+          height={{ base: "80vh", md: "50vh" }}
           m={"auto"}
           p={{ base: "30px", md: "0" }}
           justifyContent={"center"}
@@ -77,15 +68,15 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
           textAlign={"center"}
         >
           <Text textColor={"white"} fontSize={"xxx-large"} marginBottom={2}>
-            100+ Properties all over the UAE
+            {HERO_TITLE_C}
           </Text>
 
           <Text textColor={"white"} fontSize={"xx-large"} marginBottom={5}>
-            Villas, Apartments and more to explore
+            {HERO_TEXT_C}
           </Text>
           <Link href={"/search"}>
             <Button backgroundColor={"white"} textColor={"black"}>
-              Explore Now
+              {HERO_BUTTONTEXT_C}
             </Button>
           </Link>
         </Flex>
@@ -98,7 +89,7 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
           desc={HERO_TEXT_B}
           buttonText={HERO_BUTTONTEXT_B}
           linkName="/search?purpose=for-rent"
-          imageUrl={image3}
+          imageUrl={BANNER_3}
           flip
           disableHeight
         />
@@ -108,6 +99,7 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
         />
       </Box>
       <PropertySection propertyData={propertiesForSale} />
+      <Banner3 disableColor />
     </>
   );
 };

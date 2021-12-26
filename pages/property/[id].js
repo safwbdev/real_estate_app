@@ -1,15 +1,27 @@
-import millify from "millify";
 import React from "react";
+import Gallery from "../../components/Gallery";
+import PropertySection from "../../components/PropertySection";
+import { Box, Flex, Avatar, Text, Stack, Divider } from "@chakra-ui/react";
 import { FaBed, FaBath } from "react-icons/fa";
 import { GoVerified } from "react-icons/go";
 import { MdChair } from "react-icons/md";
-import { baseUrl, fetchApi } from "../../utils/fetchApi";
-import { Box, Flex, Avatar, Text, Stack, Divider } from "@chakra-ui/react";
-import { BsGridFill } from "react-icons/bs";
 import { MdLocationCity } from "react-icons/md";
-import Gallery from "../../components/Gallery";
+import { BsGridFill } from "react-icons/bs";
 import { FacebookIcon, TwitterIcon, WhatsappIcon } from "react-share";
-import PropertySection from "../../components/PropertySection";
+import { baseUrl, fetchApi } from "../../utils/fetchApi";
+import millify from "millify";
+import {
+  PROP_BATHS,
+  PROP_FACILITIES,
+  PROP_FURNISH,
+  PROP_RECOMENDATIONS,
+  PROP_ROOM,
+  PROP_ROOMS,
+  PROP_SHARE,
+  PROP_SQFT,
+  PROP_SQFT_FULL,
+  UAE_CURR,
+} from "../../utils/lang";
 
 const PropertyDetails = ({
   propertyDetails: {
@@ -31,7 +43,6 @@ const PropertyDetails = ({
   },
   recommendations,
 }) => {
-  //   console.log(recommendations);
   const shareUrl = "http://localhost:3000/";
 
   return (
@@ -82,7 +93,7 @@ const PropertyDetails = ({
                   </Box>
                 )}
                 <Text fontWeight={"bold"} fontSize={"xl"} textColor={"black"}>
-                  AED {millify(price)}
+                  {`${UAE_CURR} ${millify(price)}`}
                   {rentFrequency && `/${rentFrequency}`}
                 </Text>
               </Flex>
@@ -141,7 +152,9 @@ const PropertyDetails = ({
                 <Flex>
                   <BsGridFill />
                 </Flex>
-                <Flex marginLeft={"10px"}>{millify(area)} square feet</Flex>
+                <Flex marginLeft={"10px"}>{`${millify(
+                  area
+                )} ${PROP_SQFT_FULL}`}</Flex>
               </Flex>
 
               {rooms !== 0 && (
@@ -154,7 +167,7 @@ const PropertyDetails = ({
                     <FaBed />
                   </Flex>
                   <Flex marginLeft={"10px"}>
-                    {rooms} {rooms >= 1 ? "Bedrooms" : "Bedroom"}
+                    {rooms} {rooms >= 1 ? PROP_ROOMS : PROP_ROOM}
                   </Flex>
                 </Flex>
               )}
@@ -168,7 +181,7 @@ const PropertyDetails = ({
                     <FaBath />
                   </Flex>
                   <Flex marginLeft={"10px"}>
-                    {baths} {baths >= 1 ? "Bathrooms" : "Bathroom"}
+                    {baths} {baths >= 1 ? PROP_BATHS : PROP_BATH}
                   </Flex>
                 </Flex>
               )}
@@ -181,7 +194,7 @@ const PropertyDetails = ({
                   <MdChair />
                 </Flex>
                 <Text marginLeft={"10px"} textTransform={"capitalize"}>
-                  {furnishingStatus && "Fully Furnished"}
+                  {furnishingStatus && PROP_FURNISH}
                 </Text>
               </Flex>
               <Flex
@@ -190,8 +203,8 @@ const PropertyDetails = ({
                 width={"200px"}
                 justifyContent={"space-between"}
               >
-                <BsGridFill /> {millify(area)} sqft | <FaBed /> {rooms} |{" "}
-                <FaBath /> {baths}
+                <BsGridFill /> {`${millify(area)} ${PROP_SQFT}`} | <FaBed />{" "}
+                {rooms} | <FaBath /> {baths}
               </Flex>
             </Flex>
 
@@ -203,13 +216,12 @@ const PropertyDetails = ({
               justifyContent={{ base: "center", md: "center" }}
             >
               <Text fontSize={"sm"} fontWeight={"bold"} textColor={"black"}>
-                Share
+                {PROP_SHARE}
               </Text>
             </Flex>
             <Flex paddingBottom={3} justifyContent={"space-around"}>
               <TwitterIcon size={32} url={shareUrl} round />
               <FacebookIcon size={32} url={shareUrl} round />
-
               <WhatsappIcon size={32} url={shareUrl} round />
             </Flex>
           </Box>
@@ -230,7 +242,7 @@ const PropertyDetails = ({
                   marginBottom="2"
                   textAlign={{ base: "center", md: "left" }}
                 >
-                  Aminities:
+                  {PROP_FACILITIES}
                 </Text>
               )}
               <Flex
@@ -266,10 +278,9 @@ const PropertyDetails = ({
             fontWeight="black"
             marginBottom="2"
             paddingLeft={{ base: 5, md: 0 }}
-            // textAlign={{ base: "center", md: "left" }}
             textAlign={"left"}
           >
-            Properties You might like
+            {PROP_RECOMENDATIONS}
           </Text>
         )}
       </Box>

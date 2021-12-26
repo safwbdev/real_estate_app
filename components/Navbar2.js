@@ -1,9 +1,8 @@
 import { useState } from "react";
+import Link from "next/Link";
 import { Flex, Box, Text, useColorMode, Switch } from "@chakra-ui/react";
-// import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-import Link from "next/Link";
 import { NAV_TITLE } from "../utils/lang";
 
 const MenuItem = ({ children, isLast, to = "/" }) => {
@@ -39,7 +38,6 @@ const Navbar = (props) => {
   ));
   return (
     <Flex
-      //   mb={8}
       p={8}
       as="nav"
       align="center"

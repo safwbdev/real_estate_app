@@ -1,6 +1,6 @@
-import { Button, Divider, Flex, Heading } from "@chakra-ui/react";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import { Button, Divider, Flex, Heading } from "@chakra-ui/react";
 import { SEE_MORE_TEXT } from "../utils/lang";
 
 const DividerBox = ({ title, url }) => {

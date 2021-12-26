@@ -1,11 +1,14 @@
-import { Box, Flex, Icon, Text, Stack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { FaFilter } from "react-icons/fa";
+import { Box, Flex, Icon, Text, Stack } from "@chakra-ui/react";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import Property from "../components/Property";
 import SearchFilters from "../components/SearchFilters";
 import { baseUrl, fetchApi } from "../utils/fetchApi";
+import { isMobile } from "react-device-detect";
+import { SEARCH_FILTER_TITLE, SEARCH_NO_RESULTS } from "../utils/lang";
+
 const noResults = "https://via.placeholder.com/500?text=No+Results";
 
 const Search = ({ properties }) => {
@@ -15,6 +18,17 @@ const Search = ({ properties }) => {
     ? `Properties ${router.query.purpose.replace("-", " ")}`
     : " All Properties";
 
+  useEffect(() => {
+    if (isMobile) {
+      setSearchFilters(false);
+    }
+  }, []);
+
+  let mobileFilterIcon = searchFilters ? (
+    <Icon paddingLeft={"2"} w={"7"} as={BsChevronUp} />
+  ) : (
+    <Icon paddingLeft={"2"} w={"7"} as={BsChevronDown} />
+  );
   return (
     <>
       <Box maxWidth={"1280px"} m={"auto"}>
@@ -34,8 +48,8 @@ const Search = ({ properties }) => {
               alignItems={"center"}
               onClick={() => setSearchFilters((prevFilters) => !prevFilters)}
             >
-              <Icon paddingRight={"2"} w={"7"} as={FaFilter} />
-              <Text>Filter results</Text>
+              <Text>{SEARCH_FILTER_TITLE}</Text>
+              {mobileFilterIcon}
             </Flex>
             {searchFilters && <SearchFilters />}
           </Box>
@@ -69,7 +83,7 @@ const Search = ({ properties }) => {
                 height={"500px"}
               />
               <Text fontSize="xl" marginTop="3">
-                No Result Found.
+                {SEARCH_NO_RESULTS}
               </Text>
             </Flex>
           )}

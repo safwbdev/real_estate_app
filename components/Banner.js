@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   Box,
   Button,
@@ -8,7 +9,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import Link from "next/link";
 
 const Banner = ({
   purpose,
@@ -40,7 +40,12 @@ const Banner = ({
         w={{ base: "80%", md: "40%" }}
         align={["center", "center", "flex-start", "flex-start"]}
       >
-        <Text color="gray.500" fontSize="sm" fontWeight="medium">
+        <Text
+          color="gray.500"
+          fontSize="sm"
+          fontWeight="medium"
+          display={{ base: "none", md: "block" }}
+        >
           {purpose}
         </Text>
         <Heading

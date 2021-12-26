@@ -1,13 +1,12 @@
-import { Avatar, Box, Flex, Text, Image, Badge } from "@chakra-ui/react";
-import millify from "millify";
-// import Image from "next/image";
 import Link from "next/link";
+import { Avatar, Box, Flex, Text, Image } from "@chakra-ui/react";
 import { FaBed, FaBath } from "react-icons/fa";
-import { BsGridFill, GoGridFill } from "react-icons/bs";
+import { BsGridFill } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
+import millify from "millify";
+import { PROP_SQFT, UAE_CURR } from "../utils/lang";
+import { DEFAULT_PROP_IMAGE } from "../utils/imageSource";
 
-const defaultImage =
-  "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
 const normalSize = { base: "100%", md: "420px" };
 
 const searchSize = { base: "100%", md: "335px" };
@@ -38,7 +37,7 @@ const Property = ({
     >
       <Box>
         <Image
-          src={coverPhoto ? coverPhoto.url : defaultImage}
+          src={coverPhoto ? coverPhoto.url : DEFAULT_PROP_IMAGE}
           size="100%"
           width={400}
           height={250}
@@ -56,7 +55,7 @@ const Property = ({
               {isVerified && <GoVerified />}
             </Box>
             <Text fontWeight={"bold"} fontSize={"lg"}>
-              AED {millify(price)}
+              {`${UAE_CURR} ${millify(price)}`}
               {rentFrequency && `/${rentFrequency}`}
             </Text>
           </Flex>
@@ -72,56 +71,13 @@ const Property = ({
           color={"blue.400"}
         >
           <FaBed /> {rooms} | <FaBath /> {baths} | <BsGridFill />{" "}
-          {millify(area)} sqft
+          {`${millify(area)} ${PROP_SQFT}`}
         </Flex>
         <Text fontSize={"lg"}>
           {title.length > 30 ? `${title.substring(0.3)}...` : title}
         </Text>
       </Box>
     </Flex>
-
-    {/* <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <Image
-        src={coverPhoto ? coverPhoto.url : defaultImage}
-        alt={"property"}
-      />
-
-      <Box p="6">
-        <Box display="flex" alignItems="baseline">
-          <Badge borderRadius="full" px="2" colorScheme="teal">
-            New
-          </Badge>
-          <Box
-            color="gray.500"
-            fontWeight="semibold"
-            letterSpacing="wide"
-            fontSize="xs"
-            textTransform="uppercase"
-            ml="2"
-          >
-            {rooms} beds &bull; {baths} baths
-          </Box>
-        </Box>
-
-        <Box
-          mt="1"
-          fontWeight="semibold"
-          as="h4"
-          lineHeight="tight"
-          isTruncated
-        >
-          {title.length > 30 ? `${title.substring(0.3)}...` : title}
-        </Box>
-
-        <Box>
-          AED {millify(price)}
-          <Box as="span" color="gray.600" fontSize="sm">
-            / wk
-          </Box>
-        </Box>
-
-      </Box>
-    </Box> */}
   </Link>
 );
 
