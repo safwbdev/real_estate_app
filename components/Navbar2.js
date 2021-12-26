@@ -32,7 +32,7 @@ const Navbar = (props) => {
   ];
 
   const navLinks = linkData.map((link) => (
-    <MenuItem to={link.url} isLast={link.isLast}>
+    <MenuItem to={link.url} isLast={link.isLast} key={link.label}>
       {link.label}
     </MenuItem>
   ));
