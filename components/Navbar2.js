@@ -1,42 +1,39 @@
 import { useState } from "react";
-
+import Link from "next/link";
 import { Flex, Box, Text, useColorMode, Switch } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { NAV_TITLE } from "../utils/lang";
-import Link from "next/link";
 
-// const MenuItem = ({ children, isLast, to = "/" }) => {
-//   return (
-//     <Text
-//       mb={{ base: isLast ? 0 : 8, sm: 0 }}
-//       mr={{ base: 0, sm: isLast ? 0 : 8 }}
-//       display="block"
-//     >
-//       <Link href={to} passHref>
-//         {children}
-//       </Link>
-//     </Text>
-//   );
-// };
+const MenuItem = ({ children, isLast, to = "/" }) => {
+  return (
+    <Text
+      mb={{ base: isLast ? 0 : 8, sm: 0 }}
+      mr={{ base: 0, sm: isLast ? 0 : 8 }}
+      display="block"
+    >
+      <Link href={to}>{children}</Link>
+    </Text>
+  );
+};
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const [show, setShow] = useState(false);
   const toggleMenu = () => setShow(!show);
-  // const linkData = [
-  //   { label: "Home", url: "/", isLast: false },
-  //   { label: "Search", url: "/search", isLast: false },
-  //   { label: "Rent", url: "/search?purpose=for-rent", isLast: false },
-  //   { label: "Buy", url: "/search?purpose=for-sale", isLast: false },
-  // ];
+  const linkData = [
+    { label: "Home", url: "/", isLast: false },
+    { label: "Search", url: "/search", isLast: false },
+    { label: "Rent", url: "/search?purpose=for-rent", isLast: false },
+    { label: "Buy", url: "/search?purpose=for-sale", isLast: false },
+  ];
 
-  // const navLinks = linkData.map((link) => (
-  //   <MenuItem to={link.url} isLast={link.isLast} key={link.label}>
-  //     {link.label}
-  //   </MenuItem>
-  // ));
+  const navLinks = linkData.map((link) => (
+    <MenuItem to={link.url} isLast={link.isLast} key={link.label}>
+      {link.label}
+    </MenuItem>
+  ));
   return (
     <Flex
       p={8}
@@ -67,11 +64,7 @@ const Navbar = () => {
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
-          {/* {navLinks} */}
-          {/* <MenuItem to={"/"}>Home</MenuItem>
-          <MenuItem to={"/search"}>Search</MenuItem>
-          <MenuItem to={"/search?purpose=for-rent"}>Rent</MenuItem>
-          <MenuItem to={"/search?purpose=for-sale"}>Buy</MenuItem> */}
+          {navLinks}
           <Switch color="green" isChecked={isDark} onChange={toggleColorMode} />
         </Flex>
       </Box>
