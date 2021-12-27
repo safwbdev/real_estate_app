@@ -30,6 +30,7 @@ export const PROP_RECOMENDATIONS = "Properties You might like";
 export const PROP_ROOM = "Bedroom";
 export const PROP_ROOMS = "Bedrooms";
 export const PROP_BATH = "Bathroom";
+export const PROP_BATHS = "Bathrooms";
 export const TITLE_APARTMENTS = "Apartments";
 export const SUBTITLE_APARTMENTS = "Find buildings from Low rise to High rise";
 export const TITLE_VILLAS = "Villas";
