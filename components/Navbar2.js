@@ -1,23 +1,23 @@
 import { useState } from "react";
-import Link from "next/Link";
+// import Link from "next/Link";
 import { Flex, Box, Text, useColorMode, Switch } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-import { NAV_TITLE } from "../utils/lang";
+// import { NAV_TITLE } from "../utils/lang";
 
-const MenuItem = ({ children, isLast, to = "/" }) => {
-  return (
-    <Text
-      mb={{ base: isLast ? 0 : 8, sm: 0 }}
-      mr={{ base: 0, sm: isLast ? 0 : 8 }}
-      display="block"
-    >
-      <Link href={to} passHref>
-        {children}
-      </Link>
-    </Text>
-  );
-};
+// const MenuItem = ({ children, isLast, to = "/" }) => {
+//   return (
+//     <Text
+//       mb={{ base: isLast ? 0 : 8, sm: 0 }}
+//       mr={{ base: 0, sm: isLast ? 0 : 8 }}
+//       display="block"
+//     >
+//       <Link href={to} passHref>
+//         {children}
+//       </Link>
+//     </Text>
+//   );
+// };
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -50,9 +50,9 @@ const Navbar = () => {
     >
       <Box>
         <Text fontSize="lg" fontWeight="bold">
-          <Link href={"/"} passHref>
+          {/* <Link href={"/"} passHref>
             {NAV_TITLE}
-          </Link>
+          </Link> */}
         </Text>
       </Box>
       <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
