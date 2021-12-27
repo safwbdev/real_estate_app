@@ -1,16 +1,16 @@
 import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
-import { IMG_APARTMENT, IMG_VILLA } from "../utils/imageSource";
+import { IMG_APARTMENT, IMG_VILLA } from "../../utils/imageSource";
 import {
   SEE_MORE_TEXT,
   SUBTITLE_APARTMENTS,
   SUBTITLE_VILLA,
   TITLE_APARTMENTS,
   TITLE_VILLAS,
-} from "../utils/lang";
+} from "../../utils/lang";
 
-const Banner3 = ({ disableColor }) => {
+const SplitBanner = ({ disableColor }) => {
   const bannerHeight = { base: "60vh", md: "50vh" };
   const bannerWidth = { base: "100%", md: "50%" };
   return (
@@ -114,4 +114,4 @@ const Banner3 = ({ disableColor }) => {
   );
 };
 
-export default Banner3;
+export default SplitBanner;

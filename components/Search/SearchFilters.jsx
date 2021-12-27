@@ -12,7 +12,7 @@ import {
   Icon,
   Button,
 } from "@chakra-ui/react";
-import { filterData, getFilterValues } from "../utils/filterData";
+import { filterData, getFilterValues } from "../../utils/filterData";
 const noresult = "https://via.placeholder.com/500x100?text=No+Results";
 const SearchFilters = () => {
   const [filters] = useState(filterData);

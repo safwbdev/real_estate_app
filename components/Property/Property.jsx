@@ -4,10 +4,10 @@ import { FaBed, FaBath } from "react-icons/fa";
 import { BsGridFill } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
 import millify from "millify";
-import { PROP_SQFT, UAE_CURR } from "../utils/lang";
-import { DEFAULT_PROP_IMAGE } from "../utils/imageSource";
+import { PROP_SQFT, UAE_CURR } from "../../utils/lang";
+import { DEFAULT_PROP_IMAGE } from "../../utils/imageSource";
 
-const normalSize = { base: "100%", md: "420px" };
+const normalSize = { base: "100%", sm: "100%", md: "370px", lg: "420px" };
 
 const searchSize = { base: "100%", md: "335px" };
 

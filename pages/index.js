@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import Banner from "../components/Banner";
-import Banner3 from "../components/Banner3";
-import DividerBox from "../components/DividerBox";
-import PropertySection from "../components/PropertySection";
+import Banner from "../components/Home/Banner";
+import SplitBanner from "../components/Home/SplitBanner";
+import DividerBox from "../components/Home/DividerBox";
+import PropertySection from "../components/Property/PropertySection";
 import { baseUrl, fetchApi } from "../utils/fetchApi";
 import {
   HERO_BUTTONTEXT_A,
@@ -99,7 +99,7 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
         />
       </Box>
       <PropertySection propertyData={propertiesForSale} />
-      <Banner3 disableColor />
+      <SplitBanner disableColor />
     </>
   );
 };

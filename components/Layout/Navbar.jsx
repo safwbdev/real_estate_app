@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Flex, Box, Text, useColorMode, Switch } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-import { NAV_TITLE } from "../utils/lang";
+import { NAV_TITLE } from "../../utils/lang";
 
 const MenuItem = ({ children, isLast, to = "/" }) => {
   return (

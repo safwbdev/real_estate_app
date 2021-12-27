@@ -39,3 +39,6 @@ a {
     flex-wrap: wrap;
   }
 }
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  max-height: unset !important;
+}
