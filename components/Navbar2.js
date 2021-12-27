@@ -1,9 +1,10 @@
 import { useState } from "react";
-import Link from "next/Link";
+
 import { Flex, Box, Text, useColorMode, Switch } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { NAV_TITLE } from "../utils/lang";
+import Link from "next/link";
 
 // const MenuItem = ({ children, isLast, to = "/" }) => {
 //   return (
@@ -50,9 +51,7 @@ const Navbar = () => {
     >
       <Box>
         <Text fontSize="lg" fontWeight="bold">
-          <Link href={"/"} passHref>
-            {NAV_TITLE}
-          </Link>
+          <Link href={"/"}>{NAV_TITLE}</Link>
         </Text>
       </Box>
       <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
