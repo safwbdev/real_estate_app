@@ -69,10 +69,10 @@ const Navbar = () => {
           pt={[4, 4, 0, 0]}
         >
           {/* {navLinks} */}
-          <MenuItem to={"/"}>Home</MenuItem>
+          {/* <MenuItem to={"/"}>Home</MenuItem>
           <MenuItem to={"/search"}>Search</MenuItem>
           <MenuItem to={"/search?purpose=for-rent"}>Rent</MenuItem>
-          <MenuItem to={"/search?purpose=for-sale"}>Buy</MenuItem>
+          <MenuItem to={"/search?purpose=for-sale"}>Buy</MenuItem> */}
           <Switch color="green" isChecked={isDark} onChange={toggleColorMode} />
         </Flex>
       </Box>
