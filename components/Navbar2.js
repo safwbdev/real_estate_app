@@ -19,23 +19,23 @@ const MenuItem = ({ children, isLast, to = "/" }) => {
   );
 };
 
-const Navbar = (props) => {
+const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const [show, setShow] = useState(false);
   const toggleMenu = () => setShow(!show);
-  const linkData = [
-    { label: "Home", url: "/", isLast: false },
-    { label: "Search", url: "/search", isLast: false },
-    { label: "Rent", url: "/search?purpose=for-rent", isLast: false },
-    { label: "Buy", url: "/search?purpose=for-sale", isLast: false },
-  ];
+  // const linkData = [
+  //   { label: "Home", url: "/", isLast: false },
+  //   { label: "Search", url: "/search", isLast: false },
+  //   { label: "Rent", url: "/search?purpose=for-rent", isLast: false },
+  //   { label: "Buy", url: "/search?purpose=for-sale", isLast: false },
+  // ];
 
-  const navLinks = linkData.map((link) => (
-    <MenuItem to={link.url} isLast={link.isLast} key={link.label}>
-      {link.label}
-    </MenuItem>
-  ));
+  // const navLinks = linkData.map((link) => (
+  //   <MenuItem to={link.url} isLast={link.isLast} key={link.label}>
+  //     {link.label}
+  //   </MenuItem>
+  // ));
   return (
     <Flex
       p={8}
@@ -68,7 +68,11 @@ const Navbar = (props) => {
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
-          {navLinks}
+          {/* {navLinks} */}
+          <MenuItem to={"/"}>Home</MenuItem>
+          <MenuItem to={"/search"}>Search</MenuItem>
+          <MenuItem to={"/search?purpose=for-rent"}>Rent</MenuItem>
+          <MenuItem to={"/search?purpose=for-sale"}>Buy</MenuItem>
           <Switch color="green" isChecked={isDark} onChange={toggleColorMode} />
         </Flex>
       </Box>
