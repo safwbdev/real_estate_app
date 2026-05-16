@@ -74,7 +74,7 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
           <Text textColor={"white"} fontSize={"xx-large"} marginBottom={5}>
             {HERO_TEXT_C}
           </Text>
-          <Link href={"/search"}>
+          <Link href={"/search"} passHref>
             <Button backgroundColor={"white"} textColor={"black"}>
               {HERO_BUTTONTEXT_C}
             </Button>

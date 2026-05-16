@@ -50,7 +50,7 @@ const SplitBanner = ({ disableColor }) => {
             {SUBTITLE_APARTMENTS}
           </Text>
 
-          <Link href={"/search?categoryExternalID=4"}>
+          <Link href={"/search?categoryExternalID=4"} passHref>
             <Button
               borderRadius="8px"
               py="4"
@@ -95,7 +95,7 @@ const SplitBanner = ({ disableColor }) => {
           >
             {SUBTITLE_VILLA}
           </Text>
-          <Link href={"/search?categoryExternalID=3"}>
+          <Link href={"/search?categoryExternalID=3"} passHref>
             <Button
               borderRadius="8px"
               py="4"

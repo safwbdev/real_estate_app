@@ -34,7 +34,7 @@ const DividerBox = ({ title, url }) => {
       )}
       {url && (
         <Flex paddingLeft={5} display={{ base: "none", md: "block" }}>
-          <Link href={url}>
+          <Link href={url} passHref>
             <Button backgroundColor={"transparent"}>{SEE_MORE_TEXT}</Button>
           </Link>
         </Flex>

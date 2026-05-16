@@ -42,6 +42,7 @@ const Property = ({
           width={400}
           height={250}
           rounded="10px"
+          alt="cover"
         />
       </Box>
       <Box w={"full"}>

@@ -68,7 +68,7 @@ const Banner = ({
         >
           {desc}
         </Heading>
-        <Link href={linkName}>
+        <Link href={linkName} passHref>
           <Button
             borderRadius="8px"
             py="4"
