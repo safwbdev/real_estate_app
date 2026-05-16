@@ -10,7 +10,7 @@ export const HERO_TEXT_A = "Explore Apartments, Villas, Homes and more";
 export const HERO_BUTTONTEXT_A = "Explore properties to Buy";
 
 export const HERO_SUBTITLE_B = "RENT A HOME";
-export const HERO_TITLE_B = "Rental Homes for Everyone";
+export const HERO_TITLE_B = "Rental Homes for All";
 export const HERO_TEXT_B = "Explore Apartments,Villas, Homes and more";
 export const HERO_BUTTONTEXT_B = "Explore properties to Rent";
 
